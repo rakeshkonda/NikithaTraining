@@ -1,4 +1,4 @@
-package org.training.nikitha.softwarerefactoring.chapter1.before;
+package com.masters.softwarerefactoring.chapter1.before;
 
 import java.util.Enumeration;
 import java.util.Vector;

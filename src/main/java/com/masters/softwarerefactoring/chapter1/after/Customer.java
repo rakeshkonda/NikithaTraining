@@ -1,7 +1,4 @@
-package org.training.nikitha.softwarerefactoring.chapter1.after;
-
-import org.training.nikitha.softwarerefactoring.chapter1.after.Movie;
-import org.training.nikitha.softwarerefactoring.chapter1.after.Rental;
+package com.masters.softwarerefactoring.chapter1.after;
 
 import java.util.Enumeration;
 import java.util.Vector;
@@ -21,7 +18,7 @@ public class Customer {
         _name = name;
     }
 
-    public void addRental(org.training.nikitha.softwarerefactoring.chapter1.before.Rental arg) {
+    public void addRental(Rental arg) {
         _rentals.addElement(arg);
     }
 
@@ -96,9 +93,8 @@ public class Customer {
         return result;
     }
 
-    @Deprecated
     private double amountFor(Rental aRental) {
-        //TODO Refactor 2 : moved getCharge method to Rental as it uses only rental data and doesnot use any of customers data
-        return aRental.getCharge(); //TODO Refactor 3 : not needed here, we can directly access from rrental object
+        //TODO Refactor 2 : moved getCharge method to Rental as it uses only rental data and does not use any of customers data
+        return aRental.getCharge(); //TODO Refactor 3 : not needed here, we can directly access from rental object
     }
 }

@@ -1,4 +1,4 @@
-package org.training.nikitha.softwarerefactoring.chapter1.after;
+package com.masters.softwarerefactoring.chapter1.after;
 
 /**
  * Created with IntelliJ IDEA.

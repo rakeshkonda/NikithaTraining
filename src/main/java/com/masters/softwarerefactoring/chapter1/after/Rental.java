@@ -1,6 +1,5 @@
-package org.training.nikitha.softwarerefactoring.chapter1.after;
+package com.masters.softwarerefactoring.chapter1.after;
 
-import org.training.nikitha.softwarerefactoring.chapter1.before.Movie;
 
 /**
  * Created with IntelliJ IDEA.
