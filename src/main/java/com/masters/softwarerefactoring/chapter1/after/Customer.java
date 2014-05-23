@@ -82,9 +82,4 @@ public class Customer {
                 "</EM> frequent renter points<P>";
         return result;
     }
-
-    private double amountFor(Rental aRental) {
-        //TODO Refactor 2 : moved getCharge method to Rental as it uses only rental data and does not use any of customers data
-        return aRental.getCharge(); //TODO Refactor 3 : not needed here, we can directly access from rental object
-    }
 }
