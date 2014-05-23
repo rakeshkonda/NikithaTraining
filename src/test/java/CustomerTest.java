@@ -13,7 +13,7 @@ public class CustomerTest extends TestCase {
     public void testStatement(){
         Customer customer1 = new Customer("Nikitha");
         /**
-         *  Test Data:
+         *  Test Data : Single Rental
          *  One 'New Release' movie rental for 3 days.
          */
         Movie avengersMovie = new Movie("Avengers", Movie.NEW_RELEASE);
@@ -41,5 +41,48 @@ public class CustomerTest extends TestCase {
         assertNotNull(actualStatement);
         System.out.println(actualStatement);
         assertEquals("Statement not matching for single rental", expectedStatement, actualStatement);
+    }
+
+    @Test
+    public void testHtmlStatement(){
+        Customer customer1 = new Customer("Nikitha");
+        /**
+         *  Test Data : Multiple Rentals
+         *  One 'New Release' movie rental for 3 days.
+         *  One 'Childrens' movie rental for 2 days.
+         */
+        Movie avengersMovie = new Movie("Avengers", Movie.NEW_RELEASE);
+        Movie carsMovie = new Movie("Cars", Movie.CHILDRENS);
+
+        Rental avengersRental = new Rental(avengersMovie, 3);
+        Rental carsMovieRental = new Rental(carsMovie, 2);
+
+        customer1.addRental(avengersRental);
+        customer1.addRental(carsMovieRental);
+
+        /**
+         *  Expected price : New Release 9.0, Children movie 1.5
+         *  Expected Rental point : New Release 2, Children movie 1
+         *  Expected statement :
+         *  <H1>Rentals for <EM>Nikitha</EM></H1><P>
+         *  Avengers: 9.0<BR>
+         *  Cars: 1.5<BR>
+         *  <P>You owe <EM>10.5</EM><P>
+         *  On this rental you earned <EM>3</EM> frequent renter points<P>
+         */
+        double expectedPrice = 10.5;
+        int expectedFreqRentalPoints = 3;
+
+        String expectedStatement = "<H1>Rentals for <EM>Nikitha</EM></H1><P>\n"
+                + avengersMovie.getTitle() + ": " + avengersRental.getCharge() + "<BR>\n"
+                + carsMovie.getTitle() + ": " + carsMovieRental.getCharge() + "<BR>\n"
+                + "<P>You owe <EM>"+expectedPrice+"</EM><P>\n"
+                + "On this rental you earned <EM>"
+                + expectedFreqRentalPoints+"</EM> frequent renter points<P>";
+
+        String actualStatement = customer1.htmlStatement();
+        assertNotNull(actualStatement);
+        System.out.println(actualStatement);
+        assertEquals("HTML Statement not matching for single rental", expectedStatement, actualStatement);
     }
 }
