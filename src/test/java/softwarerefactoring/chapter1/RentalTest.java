@@ -1,3 +1,5 @@
+package softwarerefactoring.chapter1;
+
 import com.masters.softwarerefactoring.chapter1.after.Movie;
 import com.masters.softwarerefactoring.chapter1.after.Rental;
 import junit.framework.TestCase;
@@ -20,6 +22,7 @@ public class RentalTest extends TestCase {
 
         assertTrue(avengersRental.getCharge() > 0);
         assertEquals("Charge does not match with expected value", avengersRental.getCharge(), expectedCharge);
+        System.out.println("Rental getCharge Test Passed");
     }
 
     @Test
@@ -35,5 +38,6 @@ public class RentalTest extends TestCase {
 
         assertTrue(avengersRental.getFrequentRenterPoints() > 0);
         assertEquals("Unexpected Freq rental points", avengersRental.getFrequentRenterPoints(), expectedFreqRentalPoints);
+        System.out.println("Rental getFrequentRenterPoints Test Passed");
     }
 }
