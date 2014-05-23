@@ -4,11 +4,11 @@ package com.masters.softwarerefactoring.chapter1.after;
  * Created by nikithaperumalla on 5/21/14.
  */
 public class ChildrensPrice extends Price {
-    int getPriceCode() {
+    public int getPriceCode() {
         return Movie.CHILDRENS;
     }
 
-    double getCharge(int daysRented) {
+    public double getCharge(int daysRented) {
         double result = 1.5;
         if (daysRented > 3)
             result += (daysRented - 3) * 1.5;

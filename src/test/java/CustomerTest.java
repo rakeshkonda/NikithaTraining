@@ -1,7 +1,5 @@
 import com.masters.softwarerefactoring.chapter1.after.*;
-import junit.framework.Assert;
 import junit.framework.TestCase;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 /**
@@ -39,8 +37,8 @@ public class CustomerTest extends TestCase {
 
         String actualStatement = customer1.statement();
         assertNotNull(actualStatement);
-        System.out.println(actualStatement);
         assertEquals("Statement not matching for single rental", expectedStatement, actualStatement);
+        System.out.println("Customer Statement Test Passed");
     }
 
     @Test
@@ -82,7 +80,7 @@ public class CustomerTest extends TestCase {
 
         String actualStatement = customer1.htmlStatement();
         assertNotNull(actualStatement);
-        System.out.println(actualStatement);
         assertEquals("HTML Statement not matching for single rental", expectedStatement, actualStatement);
+        System.out.println("Customer HTML Statement Test Passed");
     }
 }
