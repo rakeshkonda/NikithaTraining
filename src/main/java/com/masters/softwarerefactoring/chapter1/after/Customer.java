@@ -30,17 +30,7 @@ public class Customer {
         Enumeration rentals = _rentals.elements();
         String result = "Rental Record for " + getName() + "\n";
         while (rentals.hasMoreElements()) {
-            double thisAmount = 0;
             Rental each = (Rental) rentals.nextElement();
-            //determine amounts for each line
-            //TODO Refactor 1 : moved code to amountFor method
-            //thisAmount = amountFor(each); //TODO removed because of refactor 3
-
-            //thisAmount = each.getCharge(); //TODO Refactor 4: redundant in last line of while loop
-
-            // add frequent renter points
-            //TODO Refactor 5: moved code to getFrequentRenterPoints in rental class
-            //frequentRenterPoints += each.getFrequentRenterPoints();
 
             //show figures for this rental
             result += "\t" + each.getMovie().getTitle() + "\t" + String.valueOf(each.getCharge()) +

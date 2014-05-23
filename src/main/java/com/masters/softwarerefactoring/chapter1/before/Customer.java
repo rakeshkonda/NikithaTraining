@@ -4,11 +4,9 @@ import java.util.Enumeration;
 import java.util.Vector;
 
 /**
- * Created with IntelliJ IDEA.
- * User: rkonda
- * Date: 5/21/14
- * Time: 3:34 PM
- * To change this template use File | Settings | File Templates.
+ * @author nikithaperumalla
+ * @desc
+ *
  */
 public class Customer {
     private String _name;
@@ -25,6 +23,7 @@ public class Customer {
     public String getName() {
         return _name;
     }
+
 
     public String statement() {
         double totalAmount = 0;
