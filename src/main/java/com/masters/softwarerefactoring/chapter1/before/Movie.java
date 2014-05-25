@@ -1,11 +1,8 @@
 package com.masters.softwarerefactoring.chapter1.before;
 
 /**
- * Created with IntelliJ IDEA.
- * User: rkonda
- * Date: 5/21/14
- * Time: 3:32 PM
- * To change this template use File | Settings | File Templates.
+ * @author nikithaperumalla
+ * @id 87312
  */
 public class Movie {
 

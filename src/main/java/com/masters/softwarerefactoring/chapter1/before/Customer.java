@@ -5,8 +5,7 @@ import java.util.Vector;
 
 /**
  * @author nikithaperumalla
- * @desc
- *
+ * @id 87312
  */
 public class Customer {
     private String _name;

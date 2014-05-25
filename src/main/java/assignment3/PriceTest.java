@@ -1,11 +1,10 @@
-package softwarerefactoring.chapter1;
+package assignment3;
 
-import com.masters.softwarerefactoring.chapter1.after.ChildrensPrice;
-import com.masters.softwarerefactoring.chapter1.after.NewReleasePrice;
-import com.masters.softwarerefactoring.chapter1.after.Price;
-import com.masters.softwarerefactoring.chapter1.after.RegularPrice;
+
 import junit.framework.TestCase;
 import org.junit.Test;
+
+
 /**
  * @author nikithaperumalla
  * @id 87312
