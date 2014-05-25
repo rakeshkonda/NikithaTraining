@@ -17,6 +17,7 @@ public class PriceTest extends TestCase {
 
     @Test
     public void testGetPriceCode(){
+        System.out.println("Running Price getPriceCode Test");
         assertEquals("Unexpected childrens price price-code", childrensPrice.getPriceCode(), 2);
         assertEquals("Unexpected regular price price-code", regularPrice.getPriceCode(), 0);
         assertEquals("Unexpected new release price price-code", newReleasePrice.getPriceCode(), 1);
@@ -25,6 +26,13 @@ public class PriceTest extends TestCase {
 
     @Test
     public void testGetCharge(){
+        System.out.println("Running Price getCharge Test with the following test data");
+        System.out.println("childrens single day rental");
+        System.out.println("childrens 4 day rental");
+        System.out.println("regular single day rental");
+        System.out.println("regular 4 day rental");
+        System.out.println("new release single day rental");
+        System.out.println("new release 4 day rental");
         testMoviePrice(childrensPrice, 1, 1.5); //childrens single day rental
         testMoviePrice(childrensPrice, 4, 3.0);  //childrens 4 day rental
         testMoviePrice(regularPrice, 1, 2.0);   //regular single day rental
@@ -36,6 +44,7 @@ public class PriceTest extends TestCase {
 
     @Test
     public void testGetFrequentRenterPoints() {
+        System.out.println("Running Price getFrequentRenterPoints Test");
         assertEquals("Unexpected renter points for childrens price", childrensPrice.getFrequentRenterPoints(1), 1);
         assertEquals("Unexpected renter points for regular price", regularPrice.getFrequentRenterPoints(1), 1);
         assertEquals("Unexpected renter points for new release price", newReleasePrice.getFrequentRenterPoints(1), 1);

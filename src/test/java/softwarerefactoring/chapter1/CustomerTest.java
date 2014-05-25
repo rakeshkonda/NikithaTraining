@@ -20,6 +20,8 @@ public class CustomerTest extends TestCase {
         Rental avengersRental = new Rental(avengersMovie, 3);
         customer1.addRental(avengersRental);
 
+        System.out.println("Running testStatement test with Single New Release Rental for 3 days");
+
         /**
          *  Expected price : daysRented * 3 => $9.00
          *  Expected Rental point : daysRented > 2 => 2 points
@@ -40,7 +42,7 @@ public class CustomerTest extends TestCase {
         String actualStatement = customer1.statement();
         assertNotNull(actualStatement);
         assertEquals("Statement not matching for single rental", expectedStatement, actualStatement);
-        System.out.println("Customer Statement Test Passed");
+        System.out.println("testStatement test with Single New Release Rental for 3 days : PASSED");
     }
 
     @Test
@@ -59,6 +61,9 @@ public class CustomerTest extends TestCase {
 
         customer1.addRental(avengersRental);
         customer1.addRental(carsMovieRental);
+
+        System.out.println("Running testHTMLStatement test with Multiple Rentals, one New Release Rental for 3 days " +
+                "and one Childrens movie rental for 2 days");
 
         /**
          *  Expected price : New Release 9.0, Children movie 1.5
@@ -83,6 +88,7 @@ public class CustomerTest extends TestCase {
         String actualStatement = customer1.htmlStatement();
         assertNotNull(actualStatement);
         assertEquals("HTML Statement not matching for single rental", expectedStatement, actualStatement);
-        System.out.println("Customer HTML Statement Test Passed");
+        System.out.println("testHTMLStatement test with Multiple Rentals, one New Release Rental for 3 days " +
+                "and one Childrens movie rental for 2 days : PASSED");
     }
 }
