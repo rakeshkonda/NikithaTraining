@@ -1,4 +1,5 @@
-package com.masters.softwarerefactoring.chapter1.before;
+package assignment3;
+
 
 /**
  * @author nikithaperumalla
@@ -19,5 +20,13 @@ public class Rental {
 
     public Movie getMovie() {
         return _movie;
+    }
+
+    public double getCharge() {
+        return _movie.getCharge(_daysRented);
+    }
+
+    public int getFrequentRenterPoints() {
+        return _movie.getFrequentRenterPoints(_daysRented);
     }
 }

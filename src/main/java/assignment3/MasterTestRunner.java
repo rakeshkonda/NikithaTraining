@@ -1,9 +1,9 @@
+package assignment3;
+
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
 import junit.textui.TestRunner;
-import softwarerefactoring.chapter1.*;
-
 
 /**
  * @author nikithaperumalla

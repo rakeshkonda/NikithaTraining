@@ -1,12 +1,8 @@
 package com.masters.softwarerefactoring.chapter1.after;
 
-
 /**
- * Created with IntelliJ IDEA.
- * User: rkonda
- * Date: 5/21/14
- * Time: 3:33 PM
- * To change this template use File | Settings | File Templates.
+ * @author nikithaperumalla
+ * @id 87312
  */
 public class Rental {
     private Movie _movie;

@@ -1,6 +1,5 @@
-package softwarerefactoring.chapter1;
+package assignment3;
 
-import com.masters.softwarerefactoring.chapter1.after.*;
 import junit.framework.TestCase;
 import org.junit.Test;
 
