@@ -11,7 +11,7 @@ import junit.textui.TestRunner;
  * This the master test runner that builds the test suite
  * and runs the tests that are added to the test suite
  */
-class MasterTestRunner extends TestCase {
+public class MasterTestRunner extends TestCase {
 
     public static void main(String[] args) {
         //Test runner to run the suite of tests
