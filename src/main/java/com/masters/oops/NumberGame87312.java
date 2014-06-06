@@ -5,8 +5,12 @@ import java.util.Scanner;
 
 /**
  * @author nikithaperumalla
+ * This program lets the user play a number game.
+ * User would be asked to guess a number, if the guessed number matches with random generated number, user games the game.
+ * He may continue to play the game after winning/losing or he may choose to exit the game by pressing -1.
+ * When -1 is chosen,
+ * Game summary with total number of games, total wins & total losts stats would be displayed on the console
  */
-
  public class NumberGame87312{
     public static void main(String[] args) {
         playRandomNumberGame();
@@ -22,8 +26,12 @@ import java.util.Scanner;
 
             int userSelectedNumber = 0;
             Random random = new Random();
-            int randomNum = random.nextInt(10);
+            int randomNum = random.nextInt(10) + 1;  //Adding a 1 to ensure non zero random number
 
+            /**
+             *  By default randomNum would not be equal to userSelectedNumber
+             *  because userSelectedNumber is 0 by default & randomNum is nonZero
+             */
             while(randomNum != userSelectedNumber){
                     //for loop to control the 3 trials
                     for(int j = 1 ; j <= 3; j++) {
@@ -60,6 +68,7 @@ import java.util.Scanner;
 
                             System.out.println("A new game starts now");
                             randomNum = random.nextInt(10);
+                            //Resetting the random number whenever 3 trials exhausts, because we are already displaying the randomNumber once 3 trials exhausted
                         }
                     }
                 }
