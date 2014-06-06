@@ -54,7 +54,7 @@ import java.util.Scanner;
                             totalNumberOfWins++;  //increasing the win count
                             System.out.println("Congratulations." + "Your guess is correct. \n"
                                     + "A new game starts now. \n");
-                            randomNum = random.nextInt(10);
+                            randomNum = random.nextInt(10)+1;
                             break;
                         } else {
                             totalNumberOfGames++;
@@ -67,7 +67,7 @@ import java.util.Scanner;
                                     " The correct answer is "+randomNum);
 
                             System.out.println("A new game starts now");
-                            randomNum = random.nextInt(10);
+                            randomNum = random.nextInt(10)+1;
                             //Resetting the random number whenever 3 trials exhausts, because we are already displaying the randomNumber once 3 trials exhausted
                         }
                     }
