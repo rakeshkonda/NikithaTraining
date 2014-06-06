@@ -28,7 +28,7 @@ import java.util.Scanner;
                     //for loop to control the 3 trials
                     for(int j = 1 ; j <= 3; j++) {
                         System.out.println("Enter a number >= 1 and <= 10, or enter -1 to exit game:");
-                        userSelectedNumber = sc.nextInt();
+                        userSelectedNumber = Integer.parseInt(sc.nextLine());
 
                         //user chooses to exit the game
                         if (userSelectedNumber == -1) {
