@@ -11,8 +11,9 @@ public class RentalCategory extends BaseRentalCategory {
     protected RentalModifier rentalModifier;
     protected String nameSPtr;
 
-    public RentalCategory(RentalModifier rentalModifier, float rentalFee,
+    public RentalCategory(String nameSPtr, RentalModifier rentalModifier, float rentalFee,
                           float dailyLateFee, int rentalPeriod, int frequentRenterPoints) throws Exception {
+        setNameSPtr(nameSPtr);
         setRentalModifier(rentalModifier);
         setRentalFee(rentalFee);
         setDailyLateFee(dailyLateFee);
@@ -25,30 +26,30 @@ public class RentalCategory extends BaseRentalCategory {
      *  frequent renter points for this rental
      */
     public float RentalCharge()  {
-        return (this.rentalFee + this.rentalModifier.rentalFee);
+        return (this.getRentalFee() + this.getRentalModifier().getRentalFee());
     }
 
     public int getPointsEarned()  {
-        return (this.frequentRenterPoints + this.rentalModifier.frequentRenterPoints);
+        return (this.getFrequentRenterPoints() + this.getRentalModifier().getFrequentRenterPoints());
     }
 
     public float getLateCharge(int daysKept){
         // If renter returned rental in time, else return computed fee
-        if(daysKept <= (this.rentalPeriod - this.rentalModifier.rentalPeriod)) {
+        if(daysKept <= (this.getRentalPeriod() - this.getRentalModifier().getRentalPeriod())) {
             return 0.0f;
         } else {
-           return  (daysKept - this.rentalPeriod) * (this.dailyLateFee + this.rentalModifier.dailyLateFee);
+           return  (daysKept - this.getRentalPeriod()) * (this.getDailyLateFee() + this.getRentalModifier().getDailyLateFee());
         }
     }
 
 
-    // the following operations get name & new rental modifier
+    //the following operations get name & new rental modifier
     public String getName() {
         return this.nameSPtr;
     }
 
     public RentalModifier getRentalModifier() {
-        return rentalModifier;
+        return this.rentalModifier;
     }
 
     //operations to set name & new rental modifier

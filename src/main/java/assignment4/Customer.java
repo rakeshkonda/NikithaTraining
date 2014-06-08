@@ -79,4 +79,15 @@ public class Customer {
                 "</EM> frequent renter points<P>";
         return result;
     }
+
+    public Rental searchRentals(String movieTitle) throws Exception {
+        Enumeration rentals = _rentals.elements();
+        while (rentals.hasMoreElements()) {
+            Rental rental = (Rental) rentals.nextElement();
+            if(rental.getMovie().getTitle().equalsIgnoreCase(movieTitle)){
+                return rental;
+            }
+        }
+        throw new Exception("Rental for movie: "+movieTitle+" not found under this customers rental");
+    }
 }
