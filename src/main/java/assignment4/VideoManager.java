@@ -165,7 +165,7 @@ public class VideoManager {
              */
             System.out.println(nikithaCustomer.statement());
 
-            System.out.println("________________________________________");
+            System.out.println("________________________________________\n");
 
             System.out.println(nikithaCustomer.htmlStatement());
 
