@@ -133,24 +133,32 @@ public class VideoManager {
         movieLibrary.add(movie);
     }
 
+    /**
+     * Main method added, just to demo the working of VideoManager
+     *
+     * Scenario:
+     * Customer "Nikitha" rents a new movie avenger for 5 days
+     * and returns it after 7 days.
+     * @param args
+     */
     public static void main(String[] args){
         try {
             Customer nikithaCustomer = new Customer("Nikitha");
             final String movieRented = "Avengers";
             int daysRented = 5;
             int daysKept = 7;
+
             /**
              *  Test Data : Single Rental
              *  One 'New Release' movie rental for 5 days
              */
-
             boolean isRentalSuccessful = VideoManager.getInstance().rentMovie(nikithaCustomer, movieRented, daysRented);
 
             /**
              * Lets assume, the movie was returned after 7 days i.e., daysKept is 7
              */
-             Rental avengersRental = nikithaCustomer.searchRentals(movieRented);
-             avengersRental.setDaysKept(daysKept);
+            Rental avengersRental = nikithaCustomer.searchRentals(movieRented);
+            avengersRental.setDaysKept(daysKept);
 
             /**
              * After the customer has returned the rental, printing the statement
@@ -160,8 +168,10 @@ public class VideoManager {
             System.out.println("________________________________________");
 
             System.out.println(nikithaCustomer.htmlStatement());
+
         } catch (Exception e) {
             e.printStackTrace();
+            System.out.println("Rental failed because "+e.getMessage());
         }
     }
 
