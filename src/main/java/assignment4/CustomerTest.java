@@ -61,6 +61,6 @@ public class CustomerTest extends TestCase {
         String htmlStatement = nikithaCustomer.htmlStatement();
         assertNotNull(htmlStatement);
         assertEquals("HTML Statement not matching for single rental", expectedHTMLStatement, htmlStatement);
-        System.out.println("testHTMLStatement test with Single New Release Rental for "+ daysKept +" : PASSED");
+        System.out.println("testHTMLStatement test with Single New Release Rental for "+ daysKept +" days : PASSED");
     }
 }
