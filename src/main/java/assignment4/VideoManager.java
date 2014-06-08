@@ -34,7 +34,7 @@ public class VideoManager {
                //Creating the rental category map, if the store manager wants, he can modify them later
                populateRentalCategoryMap();
 
-               //When we start the application, movie library is initialized
+               //When we start the application, movie library is initialized with a set of videos available in store
                populateMovieLibrary();
            }
         return singletonInstance;
@@ -95,7 +95,7 @@ public class VideoManager {
      * to check if the movie is available and rent it.
      * If the movie is not found and rental dint go through, false would be returned
      */
-    private static boolean rentMovie(Customer customer, String movieTitle, int daysRented){
+    public static boolean rentMovie(Customer customer, String movieTitle, int daysRented){
        boolean isRentalSuccessful = false;
        try{
             Movie movie = searchMovie(movieTitle);
@@ -157,8 +157,7 @@ public class VideoManager {
             /**
              * Lets assume, the movie was returned after 7 days i.e., daysKept is 7
              */
-            Rental avengersRental = nikithaCustomer.searchRentals(movieRented);
-            avengersRental.setDaysKept(daysKept);
+            VideoManager.getInstance().modifyDaysKept(nikithaCustomer, movieRented, daysKept);
 
             /**
              * After the customer has returned the rental, printing the statement
@@ -175,4 +174,8 @@ public class VideoManager {
         }
     }
 
+    public static void modifyDaysKept(Customer customer, String movieRented, int daysKept) throws Exception {
+        Rental avengersRental = customer.searchRentals(movieRented);
+        avengersRental.setDaysKept(daysKept);
+    }
 }
