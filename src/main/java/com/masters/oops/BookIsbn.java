@@ -39,6 +39,11 @@ public class BookIsbn {
         System.out.println("_________________________________________________________________");
     }
 
+    /**
+     * Computes checksum using formula  (D1 x 1 + D2 x 2 + D3 x 3 + D4 x 4 + D5 x 5 + D6 x 6 + D7 x 7 + D8 x 8 + D9 x 9) % 11
+     * @param input 9 digit isbn code
+     * @return checksum value
+     */
     private static char getCheckSum(String input){
         //9 digit length check
         if(input.length() != 9){
@@ -68,6 +73,11 @@ public class BookIsbn {
         return result;
     }
 
+    /**
+     * Checks if the given char is a digit in  the range of 0 to 9
+     * @param inputChar input character
+     * @return true if digit, else false
+     */
     private static boolean checkIfDigit(char inputChar) {
         return (inputChar >= '0' && inputChar <= '9');
     }
