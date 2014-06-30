@@ -1,8 +1,6 @@
-package assignment4;
+package assignment5;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -12,16 +10,12 @@ import java.util.Map;
 public class VideoManager {
 
     private static VideoManager singletonInstance = null;
-    /**
-     *  List of movies this video rental stores has.
-     *  In future, we can replace this static library with a database
-     */
-    private static List<Movie> movieLibrary = null;
     private static Map<String, RentalCategory> rentalCategoryMap = new HashMap<String, RentalCategory>();
     private static Map<String, RentalModifier> rentalModifierMap = new HashMap<String, RentalModifier>();
+    private static ExistingCustomers existingCustomers = new ExistingCustomers();
 
 
-    private void VideoManager(){
+    private VideoManager(){
         //not letting any body, only one instance of VideoManager should exist.
         // Exists only to defeat instantiation
         //SINGLETON Object
@@ -43,20 +37,20 @@ public class VideoManager {
     /**
      * Populates the RentalCategory map with
      * childrenRentalCategory, regularRentalCategory,  newRentalCategory
-     * @throws Exception
+     * @throws Exception exception
      */
     private static void populateRentalCategoryMap() throws Exception {
         //Rental Modifiers
         RentalModifier regularRentalModifier =  new RentalModifier(0.0f, 0.0f, 0, 0);
-        RentalModifier newRentalModifier =  new RentalModifier(0.5f, 0.5f, 2, 2);
+        RentalModifier newRentalModifier =  new RentalModifier(1.0f, 1.5f, 1, 1);
 
         rentalModifierMap.put("Regular Rental", regularRentalModifier);
         rentalModifierMap.put("New Rental", newRentalModifier);
 
         //Rental Categories
         RentalCategory childrenRental = new RentalCategory("Children Rental", regularRentalModifier, 1.5f, 1.5f, 3, 3);
-        RentalCategory regularRental = new RentalCategory("Regular Rental", regularRentalModifier, 1.5f, 1.5f, 3, 0);
-        RentalCategory newRental = new RentalCategory("New Rental", newRentalModifier, 1.5f, 1.5f, 3, 1);
+        RentalCategory regularRental = new RentalCategory("Regular Rental", regularRentalModifier, 2.0f, 1.5f, 2, 1);
+        RentalCategory newRental = new RentalCategory("New Rental", newRentalModifier, 2.0f, 1.5f, 2, 1);
 
         rentalCategoryMap.put("Children Rental", childrenRental);
         rentalCategoryMap.put("Regular Rental", regularRental);
@@ -81,12 +75,12 @@ public class VideoManager {
         Movie avatarMovie = new Movie("Avatar", rentalCategoryMap.get("Regular Rental"));
 
         //adding the above mentioned movies to my static library
-        addMovieToLibrary(avengersMovie);
-        addMovieToLibrary(hobbitMovie);
-        addMovieToLibrary(toyStoryMovie);
-        addMovieToLibrary(carsMovie);
-        addMovieToLibrary(titanicMovie);
-        addMovieToLibrary(avatarMovie);
+        MoviesInventory.addMovieToLibrary(avengersMovie);
+        MoviesInventory.addMovieToLibrary(hobbitMovie);
+        MoviesInventory.addMovieToLibrary(toyStoryMovie);
+        MoviesInventory.addMovieToLibrary(carsMovie);
+        MoviesInventory.addMovieToLibrary(titanicMovie);
+        MoviesInventory.addMovieToLibrary(avatarMovie);
     }
 
     /**
@@ -94,11 +88,16 @@ public class VideoManager {
      * When a customer wants to rent a movie, he may use this method
      * to check if the movie is available and rent it.
      * If the movie is not found and rental dint go through, false would be returned
+     *
+     * @param customer customer
+     * @param movieTitle title of the movie
+     * @param daysRented number of days rented
+     * @return true if rental successful, else false
      */
     public static boolean rentMovie(Customer customer, String movieTitle, int daysRented){
        boolean isRentalSuccessful = false;
        try{
-            Movie movie = searchMovie(movieTitle);
+            Movie movie = MoviesInventory.searchMovie(movieTitle);
             Rental rental = new Rental(movie, daysRented);
             customer.addRental(rental);
             isRentalSuccessful = true;
@@ -109,29 +108,6 @@ public class VideoManager {
         return isRentalSuccessful;
     }
 
-    /**
-     * This method searches the static movieList (database in future)
-     * if a movie title is given
-     * @param movieTitle
-     */
-    private static Movie searchMovie(String movieTitle) throws Exception {
-        for(Movie movie : movieLibrary){
-            if(movie.getTitle().equalsIgnoreCase(movieTitle)){
-                return movie;
-            }
-        }
-        //if we do not find the movie, after searching the movieLibrary, throw movie not found exception
-        throw new Exception("Movie with title:"+movieTitle+" not available in the library");
-    }
-
-
-    public static void addMovieToLibrary(Movie movie) {
-        //Lazy initialization
-        if(movieLibrary == null){
-            movieLibrary = new ArrayList<Movie>();
-        }
-        movieLibrary.add(movie);
-    }
 
     /**
      * Main method added, just to demo the working of VideoManager
@@ -139,11 +115,11 @@ public class VideoManager {
      * Scenario:
      * Customer "Nikitha" rents a new movie avenger for 5 days
      * and returns it after 7 days.
-     * @param args
+     * @param args main arguments
      */
     public static void main(String[] args){
         try {
-            Customer nikithaCustomer = new Customer("Nikitha");
+            Customer nikithaCustomer = createCustomer("nikitha", "", "");
             final String movieRented = "Avengers";
             int daysRented = 5;
             int daysKept = 7;
@@ -166,7 +142,9 @@ public class VideoManager {
 
             System.out.println("________________________________________\n");
 
-            System.out.println(nikithaCustomer.htmlStatement());
+            System.out.println(nikithaCustomer.getStatement().htmlStatement());
+
+            checkOutAndPrintReceipt(nikithaCustomer, 100.00);
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -177,5 +155,42 @@ public class VideoManager {
     public static void modifyDaysKept(Customer customer, String movieRented, int daysKept) throws Exception {
         Rental avengersRental = customer.searchRentals(movieRented);
         avengersRental.setDaysKept(daysKept);
+    }
+
+    /**
+     * Creates customer object with the given params.
+     * if the customer is not present in the existing customers list,
+     * then it will be added to the existing customers list
+     *
+     * @param firstName first name of the customer
+     * @param lastName  last name of the customer
+     * @param address address of the customer
+     *
+     * @return customer object with the given params
+     */
+    public static Customer createCustomer(String firstName, String lastName, String address){
+        PersonDescription personDesc = new PersonDescription(firstName, lastName, address);
+        Customer customer = new Customer(personDesc);
+        if(isNewCustomer(customer)){
+            //if new customer then add to existing customers map
+            existingCustomers.addToCustomersMap(customer);
+        } else {
+            // do nothing
+        }
+        return customer;
+    }
+
+    /**
+     * checks if the given customer is new or already exists
+     * @param customer customer
+     * @return returns true if new customer else false
+     */
+    public static boolean isNewCustomer(Customer customer){
+        return existingCustomers.isNewCustomer(customer);
+    }
+
+    public static void checkOutAndPrintReceipt(Customer customer, double amountPaid){
+         Receipt receipt = new Receipt(customer, amountPaid);
+         receipt.printReceipt();
     }
 }
